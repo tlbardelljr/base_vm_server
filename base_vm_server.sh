@@ -2,11 +2,11 @@
 
    #################################################################
    #                                                               #
-   #             tlbardelljr network VM host installer             #
-   #           Copyright (C) 2023 Terry Bardell Jr                 #
+   #                 tlbardelljr base VM installer                 #
+   #             Copyright (C) 2023 Terry Bardell Jr               #
    #       Licensed under the GNU General Public License 3.0       #
    #                                                               #
-   #      https://github.com/tlbardelljr/bare-metal-kvm-server     #
+   #          https://github.com/tlbardelljr/base_vm_server        #
    #                                                               #
    #################################################################
    
