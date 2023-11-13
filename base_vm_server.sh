@@ -10,8 +10,8 @@
    #                                                               #
    #################################################################
    
-my_options=(   "Curl"  "Git"  "Cockpit" "Webmin" "Boot-headless" "CIFS"  "Network-Bridge" "ssh"   )
-preselection=( "true"  "true" "true"    "true"   "false"         "false" "true"           "false" )
+my_options=(   "Curl"  "Git"  "Cockpit" "Webmin" "Boot-headless" "CIFS"  "ssh"   "nfs"   )
+preselection=( "true"  "true" "false"   "true"   "true"          "false" "false" "false" )
 installer_name="tlbardelljr network VM installer"
 sdoutColor=250
 progressBarColorFG=226
@@ -107,25 +107,6 @@ Boot-headless () {
 
 CIFS () {
 	"$package_manager" install -y cifs-utils & progress_bar $!; 
-}
-
-Network-Bridge () {
-	nmcli connection show & progress_bar $!;
-	echo Enter network interface device name to link to bridge br0?
-	read -e interface_name < $terminal
-	echo " "
-	echo Use prefix length for network mask.
-	echo 'Example 192.168.0.5 255.255.0.0 would be entered 192.168.0.5/16.'
-	echo Enter ipadress with prefix length?
-	read -e ip_address < $terminal
-	echo Enter ip address for gateway?
-	read -e gateway < $terminal
-	
-	nmcli connection add type bridge autoconnect yes con-name br0 ifname br0 & progress_bar $!;
-	nmcli connection modify br0 ipv4.addresses "$ip_address" gw4 "$gateway" ipv4.method manual & progress_bar $!; 
-	nmcli connection modify br0 ipv4.dns "$gateway" & progress_bar $!; 
-	nmcli connection add type bridge-slave autoconnect yes con-name "$interface_name" ifname "$interface_name" master br0 & progress_bar $!; 
-	nmcli connection up br0 & progress_bar $!;
 }
 
 ssh () {
