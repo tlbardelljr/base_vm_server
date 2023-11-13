@@ -132,7 +132,7 @@ ssh () {
 	esac
 }
 
-CIFS () {
+nfs () {
 	"$package_manager" install -y nfs-common & progress_bar $!; 
 }
 
