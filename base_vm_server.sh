@@ -132,6 +132,10 @@ ssh () {
 	esac
 }
 
+CIFS () {
+	"$package_manager" install -y nfs-common & progress_bar $!; 
+}
+
 install_app () {
 	 while true; do
 	 	echo -e "\nDo you wish to install $1? "
